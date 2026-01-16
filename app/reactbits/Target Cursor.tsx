@@ -87,6 +87,17 @@ const TargetCursor: React.FC<TargetCursorProps> = ({
     createSpinTimeline();
 
     const tickerFn = () => {
+      if (activeTarget) {
+        const rect = activeTarget.getBoundingClientRect();
+        const { borderWidth, cornerSize } = constants;
+        targetCornerPositionsRef.current = [
+          { x: rect.left - borderWidth, y: rect.top - borderWidth },
+          { x: rect.right + borderWidth - cornerSize, y: rect.top - borderWidth },
+          { x: rect.right + borderWidth - cornerSize, y: rect.bottom + borderWidth - cornerSize },
+          { x: rect.left - borderWidth, y: rect.bottom + borderWidth - cornerSize }
+        ];
+      }
+
       if (!targetCornerPositionsRef.current || !cursorRef.current || !cornersRef.current) {
         return;
       }
