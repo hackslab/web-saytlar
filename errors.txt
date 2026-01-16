@@ -1,0 +1,3 @@
+app/reactbits/ASCIIText.tsx(4,24): error TS7016: Could not find a declaration file for module 'three'. 'C:/Users/Abdulaziz/Desktop/web-saytlar/node_modules/three/build/three.module.js' implicitly has an 'any' type.
+  Try `npm i --save-dev @types/three` if it exists or add a new declaration (.d.ts) file containing `declare module 'three';`
+app/reactbits/ASCIIText.tsx(438,25): error TS7006: Parameter 'object' implicitly has an 'any' type.
