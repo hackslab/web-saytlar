@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { projects } from "../data/projects";
+import PixelTransition from "../reactbits/PixelTransition";
 
 export default function PortfolioSection() {
   const displayedProjects = projects.slice(0, 6);
@@ -47,59 +48,55 @@ export default function PortfolioSection() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {displayedProjects.map((project, index) => (
-            <motion.a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
+            <motion.div
               key={index}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.3, delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-[10px] bg-card border border-border hover:border-primary/50 transition-colors duration-500 cursor-target block"
+              className="group relative rounded-[10px] bg-card border border-border h-full cursor-target"
             >
-              <div className="aspect-[4/3] w-full h-full relative overflow-hidden bg-muted">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
-
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-500" />
-
-                {/* Content Overlay */}
-                <div className="absolute inset-0 p-6 flex flex-col justify-end transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  <span className="text-white/80 text-sm font-mono mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
-                    {project.category} — {project.year}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white mb-1">
-                    {project.name}
-                  </h3>
-                  <p className="text-white/90 text-sm max-w-md opacity-0 group-hover:opacity-100 transition-opacity duration-500 h-0 group-hover:h-auto overflow-hidden">
-                    {project.description}
-                  </p>
-                </div>
-
-                {/* Arrow Icon */}
-                <div className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 -translate-y-4 group-hover:translate-x-0 group-hover:translate-y-0 border border-white/20">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <line x1="7" y1="17" x2="17" y2="7"></line>
-                    <polyline points="7 7 17 7 17 17"></polyline>
-                  </svg>
-                </div>
-              </div>
-            </motion.a>
+              <PixelTransition
+                firstContent={
+                  <div className="w-full h-full relative">
+                    <Image
+                      src={project.image}
+                      alt={project.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+                  </div>
+                }
+                secondContent={
+                  <div className="w-full h-full bg-[#111] p-6 flex flex-col justify-between items-start text-white">
+                    <div className="w-full">
+                      <span className="text-[#2b68c9] text-sm font-mono mb-2 block">
+                        {project.category} — {project.year}
+                      </span>
+                      <h3 className="text-2xl font-bold mb-2 text-white">
+                        {project.name}
+                      </h3>
+                      <p className="text-white/80 text-sm line-clamp-3">
+                        {project.description}
+                      </p>
+                    </div>
+                    <Link
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="cursor-target mt-4 px-6 py-2 rounded-[8px] bg-[#2b68c9] text-white font-medium hover:bg-white hover:text-[#2b68c9] transition-colors w-full text-center"
+                    >
+                      Loyihani ko'rish
+                    </Link>
+                  </div>
+                }
+                gridSize={12}
+                pixelColor="#111"
+                aspectRatio="75%"
+                className="w-full h-full rounded-[10px] overflow-hidden z-10"
+              />
+            </motion.div>
           ))}
         </div>
 
