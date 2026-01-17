@@ -9,9 +9,9 @@ export default function Home() {
     <main>
       <Header />
       <AboutUs />
-      <SuccessNumbers />
       <ServicesSection />
       <PortfolioSection />
+      <SuccessNumbers />
     </main>
   );
 }
