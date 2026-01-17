@@ -109,7 +109,7 @@ export default function ServicesSection() {
                   <div 
                     key={service.id} 
                     ref={(el) => { sectionRefs.current[index] = el; }}
-                    className={`group relative pl-8 border-l-2 transition-colors duration-500 snap-center ${
+                    className={`group relative pl-8 border-l-2 transition-colors duration-500 ${
                       activeService === service.id ? 'border-primary' : 'border-border hover:border-primary'
                     }`}
                   >
@@ -146,7 +146,7 @@ export default function ServicesSection() {
 
           {/* Right Side - Dynamic Sticky Scroll */}
           <div className="hidden lg:flex lg:w-1/2 sticky top-0 h-screen items-center justify-center self-start">
-             <div className="relative w-[550px] h-[550px] overflow-hidden" style={{ borderRadius: "8px" }}>
+             <div className="relative w-full max-w-[550px] aspect-square overflow-hidden" style={{ borderRadius: "8px" }}>
                 {/* Fade transition between scroll components */}
                 {Object.entries(scrollComponents).map(([id, Component]) => (
                   <div 
