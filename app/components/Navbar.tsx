@@ -27,9 +27,12 @@ const Navbar = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pointer-events-none">
       <nav
-        className={`pointer-events-auto mx-auto max-w-6xl flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-500 rounded-2xl ${
-          isScrolled ? "floating-nav py-3" : "floating-nav py-4"
+        className={`pointer-events-auto mx-auto max-w-6xl flex items-center justify-between px-4 sm:px-6 lg:px-8 transition-all duration-500 ${
+          isScrolled
+            ? "py-3 bg-black/40 backdrop-blur-xl shadow-lg shadow-black/10"
+            : "py-4 bg-transparent"
         }`}
+        style={{ borderRadius: "15px" }}
       >
         {/* Logo */}
         <Link href="/" className="cursor-target flex items-center gap-3 group">
