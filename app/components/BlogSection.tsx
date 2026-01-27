@@ -63,7 +63,7 @@ const BlogSection = () => {
               type="button"
               aria-label="Oldingi maqolalar"
               onClick={() => scrollByAmount("prev")}
-              className="cursor-target h-10 w-10 rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
+              className="cursor-target flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -85,7 +85,7 @@ const BlogSection = () => {
               type="button"
               aria-label="Keyingi maqolalar"
               onClick={() => scrollByAmount("next")}
-              className="cursor-target h-10 w-10 rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
+              className="cursor-target flex h-10 w-10 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -108,7 +108,7 @@ const BlogSection = () => {
 
         <div
           ref={sliderRef}
-          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 md:mx-0 md:px-0"
+          className="flex items-stretch gap-6 overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth pt-[calc(var(--spacing)*6)] pb-6 -mx-4 px-4 md:mx-0 md:px-0"
         >
           {latestBlogs.map((post, index) => (
             <motion.div
@@ -121,7 +121,7 @@ const BlogSection = () => {
               className="w-[260px] sm:w-[320px] lg:w-[360px] shrink-0 snap-start"
             >
               <SpotlightCard
-                className="cursor-target h-full rounded-[12px] border border-border bg-card p-6 transition-all duration-300 hover:border-[#2b68c9]/50"
+                className="cursor-target flex h-full min-h-[360px] flex-col rounded-[12px] border border-border bg-card p-6 transition-all duration-300 hover:border-[#2b68c9]/50"
                 spotlightColor="rgba(43, 104, 201, 0.15)"
               >
                 <div className="relative mb-5 h-36 w-full overflow-hidden rounded-[10px] border border-white/10">
@@ -146,7 +146,7 @@ const BlogSection = () => {
                   {post.excerpt}
                 </p>
 
-                <div className="mt-6 flex items-center justify-between">
+                <div className="mt-auto flex items-center justify-between pt-6">
                   <div className="text-xs text-muted-foreground">
                     <span className="text-white/70">{post.author.name}</span>
                     <span className="mx-2 text-white/30">/</span>

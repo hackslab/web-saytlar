@@ -336,7 +336,7 @@ const serviceCards = [
 
 const Header = () => {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-background">
+    <section className="relative w-full min-h-[80svh] sm:min-h-[90svh] lg:min-h-[100svh] overflow-hidden bg-background">
       {/* Particles Background */}
       <div className="absolute inset-0 z-0">
         <Particles
@@ -354,9 +354,9 @@ const Header = () => {
       {/* Navbar removed as it's in layout */}
 
       {/* Hero Content - Split into two columns */}
-      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between min-h-screen px-4 sm:px-6 lg:px-16 xl:px-24 pt-24">
+      <div className="relative z-10 flex flex-col lg:flex-row items-center justify-center lg:justify-between min-h-[80svh] sm:min-h-[90svh] lg:min-h-[100svh] px-4 sm:px-6 lg:px-16 xl:px-24 pt-16 sm:pt-20 lg:pt-24">
         {/* Left Side - Text Content */}
-        <div className="flex flex-col items-center lg:items-start justify-center lg:w-1/2 text-center lg:text-left pointer-events-none mb-12 lg:mb-0">
+        <div className="flex flex-col items-center lg:items-start justify-center lg:w-1/2 text-center lg:text-left pointer-events-none">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 leading-tight">
             Biznesingiz uchun
             <br />
@@ -395,7 +395,7 @@ const Header = () => {
         </div>
 
         {/* Right Side - Card Swap with Split Content */}
-        <div className="flex items-center justify-center lg:w-1/2 w-full h-[400px] sm:h-[500px] relative pointer-events-auto">
+        <div className="hidden lg:flex items-center justify-center lg:w-1/2 w-full h-[400px] sm:h-[500px] relative pointer-events-auto">
           <CardSwap
             width="100%"
             height="100%"
