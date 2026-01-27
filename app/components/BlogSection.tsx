@@ -68,10 +68,6 @@ const BlogSection = () => {
                   <div className="relative z-10 h-full p-4 flex flex-col justify-between">
                     <div className="flex items-center justify-between text-xs font-mono text-white/70">
                       <span>{post.category.toUpperCase()}</span>
-                      <span>{post.readTime}</span>
-                    </div>
-                    <div className="text-sm text-white/80">
-                      {post.dateLabel}
                     </div>
                   </div>
                 </div>

@@ -46,16 +46,12 @@ export default function BlogPostPage({ params }: BlogPageProps) {
         <div className="max-w-3xl mt-6 space-y-6">
           <div className="flex flex-wrap items-center gap-3 text-xs font-mono text-[#2b68c9] tracking-wider">
             <span>{post.category.toUpperCase()}</span>
-            <span className="text-white/30">/</span>
-            <span>{post.readTime}</span>
           </div>
           <h1 className="text-4xl md:text-6xl font-bold">{post.title}</h1>
           <p className="text-muted-foreground text-lg leading-relaxed">
             {post.excerpt}
           </p>
           <div className="flex flex-wrap items-center gap-3 text-sm text-muted-foreground">
-            <span>{post.dateLabel}</span>
-            <span className="text-white/30">/</span>
             <span>{post.author.name}</span>
             <span className="text-white/30">/</span>
             <span>{post.author.role}</span>
