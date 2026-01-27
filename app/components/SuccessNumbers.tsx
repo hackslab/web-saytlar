@@ -3,57 +3,73 @@
 import React from "react";
 import { motion } from "motion/react";
 import CountUp from "../reactbits/CountUp";
+import SpotlightCard from "../reactbits/SpotlightCard";
 
 interface StatCardProps {
   value: number;
   suffix?: string;
   label: string;
+  description: string;
   delay: number;
   icon: React.ReactNode;
+  tag: string;
 }
 
 const StatCard: React.FC<StatCardProps> = ({
   value,
   suffix = "",
   label,
+  description,
   delay,
   icon,
+  tag,
 }) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay }}
+      transition={{ duration: 0.5, delay }}
       viewport={{ once: true }}
-      className="stat-card cursor-target group"
     >
-      {/* Animated border glow */}
-      <div className="stat-card-glow" />
+      <SpotlightCard
+        className="cursor-target h-full rounded-[10px] border border-border bg-card p-8 transition-all duration-300 hover:border-[#2b68c9]/50"
+        spotlightColor="rgba(43, 104, 201, 0.15)"
+      >
+        {/* Tag number */}
+        <span className="text-[#2b68c9] font-mono text-sm tracking-wider mb-6 block">
+          {tag}
+        </span>
 
-      {/* Icon container */}
-      <div className="stat-icon-container">
-        <div className="stat-icon">{icon}</div>
-      </div>
+        {/* Icon */}
+        <div className="mb-6">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-[8px] border border-[#2b68c9]/30 bg-[#2b68c9]/10 text-[#2b68c9]">
+            {icon}
+          </div>
+        </div>
 
-      {/* Value display */}
-      <div className="stat-value-container">
-        <CountUp
-          to={value}
-          from={0}
-          duration={2.5}
-          delay={delay + 0.3}
-          className="stat-value"
-          separator=","
-        />
-        <span className="stat-suffix">{suffix}</span>
-      </div>
+        {/* Value display */}
+        <div className="flex items-baseline gap-1 mb-3">
+          <CountUp
+            to={value}
+            from={0}
+            duration={2.5}
+            delay={delay + 0.3}
+            className="text-5xl md:text-6xl font-bold text-foreground"
+            separator=","
+          />
+          <span className="text-3xl md:text-4xl font-bold text-[#2b68c9]">
+            {suffix}
+          </span>
+        </div>
 
-      {/* Label */}
-      <p className="stat-label">{label}</p>
+        {/* Label */}
+        <h3 className="text-xl font-bold text-foreground mb-2">{label}</h3>
 
-      {/* Decorative corner elements */}
-      <div className="stat-corner stat-corner-tl" />
-      <div className="stat-corner stat-corner-br" />
+        {/* Description */}
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          {description}
+        </p>
+      </SpotlightCard>
     </motion.div>
   );
 };
@@ -64,12 +80,15 @@ const SuccessNumbers: React.FC = () => {
       value: 5,
       suffix: "+",
       label: "Yillik tajriba",
+      description:
+        "Bozorda ishonchli va barqaror kompaniya sifatida o'z o'rnimizni mustahkamladik.",
+      tag: "01",
       icon: (
         <svg
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-8 h-8"
+          className="w-7 h-7"
         >
           <path
             d="M12 6V12L16 14"
@@ -92,12 +111,15 @@ const SuccessNumbers: React.FC = () => {
       value: 150,
       suffix: "+",
       label: "Tugallangan loyihalar",
+      description:
+        "Har bir loyiha - bu yangi tajriba va mijozlar ishonchining tasdig'i.",
+      tag: "02",
       icon: (
         <svg
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-8 h-8"
+          className="w-7 h-7"
         >
           <path
             d="M9 12L11 14L15 10"
@@ -122,12 +144,15 @@ const SuccessNumbers: React.FC = () => {
       value: 1000,
       suffix: "+",
       label: "Mamnun foydalanuvchilar",
+      description:
+        "Mijozlarimiz qoniqishi - bu bizning asosiy maqsadimiz va motivatsiyamiz.",
+      tag: "03",
       icon: (
         <svg
           viewBox="0 0 24 24"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          className="w-8 h-8"
+          className="w-7 h-7"
         >
           <path
             d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21"
@@ -157,59 +182,55 @@ const SuccessNumbers: React.FC = () => {
   ];
 
   return (
-    <section className="success-numbers-section">
-      {/* Background decorative elements */}
-      <div className="success-bg-grid" />
-      <div className="success-bg-gradient-left" />
-      <div className="success-bg-gradient-right" />
-
-      {/* Floating particles */}
-      <div className="floating-particle particle-1" />
-      <div className="floating-particle particle-2" />
-      <div className="floating-particle particle-3" />
-      <div className="floating-particle particle-4" />
-
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <motion.span
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="inline-block px-4 py-2 bg-[#2b68c9]/10 border border-[#2b68c9]/30 rounded-[8px] text-[#2b68c9] text-sm font-medium mb-6"
-          >
-            Bizning yutuqlarimiz
-          </motion.span>
-
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-            Muvaffaqiyatimiz{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#2b68c9] to-white">
-              raqamlarda
-            </span>
-          </h2>
-
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto">
-            Yillar davomida to'plagan tajribamiz va mijozlarimizning ishonchi
-          </p>
-        </motion.div>
+    <section
+      id="success-numbers"
+      className="py-24 bg-background relative overflow-hidden"
+    >
+      <div className="container mx-auto px-4 md:px-6">
+        {/* Section Header - Same style as Services & Portfolio */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div className="max-w-xl">
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-[#2b68c9] font-mono mb-4 block tracking-wider"
+            >
+              YUTUQLAR
+            </motion.span>
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-4xl md:text-5xl font-bold mb-4"
+            >
+              Muvaffaqiyatimiz <span className="gradient-text">raqamlarda</span>
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-muted-foreground text-lg"
+            >
+              Yillar davomida to'plagan tajribamiz va mijozlarimizning ishonchi.
+            </motion.p>
+          </div>
+        </div>
 
         {/* Stats Grid */}
-        <div className="stats-grid">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {stats.map((stat, index) => (
             <StatCard
               key={index}
               value={stat.value}
               suffix={stat.suffix}
               label={stat.label}
+              description={stat.description}
               delay={index * 0.15}
               icon={stat.icon}
+              tag={stat.tag}
             />
           ))}
         </div>
@@ -220,7 +241,8 @@ const SuccessNumbers: React.FC = () => {
           whileInView={{ scaleX: 1 }}
           transition={{ duration: 1, delay: 0.5 }}
           viewport={{ once: true }}
-          className="decorative-line"
+          className="w-48 h-[2px] mx-auto mt-16 bg-gradient-to-r from-transparent via-[#2b68c9] to-transparent"
+          style={{ transformOrigin: "center" }}
         />
       </div>
     </section>
