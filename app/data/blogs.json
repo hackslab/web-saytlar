@@ -1,0 +1,137 @@
+[
+  {
+    "id": "web_sayt_nima",
+    "title": "Web sayt nima va u biznesga nima beradi?",
+    "excerpt": "Web sayt mijoz ishonchini oshiradi, xizmatlaringizni 24/7 ko'rsatadi va sotuvlarni tezlashtiradi.",
+    "date": "2026-01-12",
+    "dateLabel": "12 Yanvar, 2026",
+    "readTime": "5 daqiqa",
+    "category": "Veb-saytlar",
+    "accent": "#2b68c9",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "Digital Strateg"
+    },
+    "highlights": [
+      "Mijoz ishonchi va brend obro'si",
+      "Sotuv va leadlar uchun 24/7 kanal",
+      "Analitika orqali tez qarorlar"
+    ],
+    "sections": [
+      {
+        "title": "Qisqa ta'rif",
+        "paragraphs": [
+          "Web sayt - bu biznesingizning raqamli ofisi. U xizmatlaringizni tushuntiradi, savollarga javob beradi va mijozni kerakli harakatga olib keladi.",
+          "To'g'ri qurilgan sayt marketing kanallari uchun tayanch sahifa bo'lib, reklama va SEO samaradorligini oshiradi."
+        ]
+      },
+      {
+        "title": "Asosiy foydalar",
+        "bullets": [
+          "Mijoz uchun aniq taklif va ishonchli ko'rinish.",
+          "Qidiruv tizimlaridan organik trafik olish.",
+          "Onlayn so'rov va buyurtmalarni avtomatlashtirish.",
+          "Analitika orqali foydalanuvchi xatti-harakatini kuzatish."
+        ]
+      },
+      {
+        "title": "Boshlash uchun checklist",
+        "bullets": [
+          "Maqsad va auditoriyani aniqlang.",
+          "Sahifa strukturasini rejalashtiring: hero, xizmatlar, isbot, CTA.",
+          "Mobil moslik va tezlikni test qiling.",
+          "Sarlavha va kontentni foyda tilida yozing."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "landing_va_korporativ",
+    "title": "Landing va korporativ sayt: qaysi biri kerak?",
+    "excerpt": "Loyiha turi, byudjet va marketing maqsadiga qarab to'g'ri formatni tanlash bo'yicha qisqa qo'llanma.",
+    "date": "2026-01-08",
+    "dateLabel": "08 Yanvar, 2026",
+    "readTime": "4 daqiqa",
+    "category": "Strategiya",
+    "accent": "#4a82d9",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "Market Research"
+    },
+    "highlights": [
+      "Tez start uchun landing yaxshi",
+      "Ko'p bo'limli bizneslar uchun korporativ sayt",
+      "Hybrid yechim bilan bosqichma-bosqich o'sish"
+    ],
+    "sections": [
+      {
+        "title": "Landing qachon kerak?",
+        "paragraphs": [
+          "Agar sizda bitta aniq taklif bo'lsa va tez natija kerak bo'lsa, landing eng maqbul tanlov. U reklamadan kelgan trafikni tezda lead yoki sotuvga aylantiradi.",
+          "Landing odatda 1-2 asosiy harakatga fokuslanadi: qo'ng'iroq, ariza yoki to'g'ridan-to'g'ri buyurtma."
+        ]
+      },
+      {
+        "title": "Korporativ sayt qachon kerak?",
+        "paragraphs": [
+          "Agar sizda bir nechta xizmatlar, jamoa, loyiha va yangiliklar bo'lsa, korporativ sayt biznesingizni kengroq yoritadi.",
+          "Bu format brend ishonchini oshiradi va uzoq muddatli SEO strategiyasi uchun mustahkam asos beradi."
+        ]
+      },
+      {
+        "title": "Tanlash bo'yicha tez yo'riq",
+        "bullets": [
+          "Bir taklif va tez savdo kerak bo'lsa: landing.",
+          "Ko'p xizmat va ichki sahifalar bo'lsa: korporativ sayt.",
+          "Avval landing, keyin korporativga kengaytirish: hybrid yo'l."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "telegram_bot_foyda",
+    "title": "Telegram bot biznesga qanday foyda beradi?",
+    "excerpt": "Savdo, mijozlarga xizmat va avtomatlashtirishni tezlashtirish uchun Telegram botdan foydalanish yo'llari.",
+    "date": "2026-01-03",
+    "dateLabel": "03 Yanvar, 2026",
+    "readTime": "6 daqiqa",
+    "category": "Telegram bot",
+    "accent": "#1d4f9e",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "Automation Lead"
+    },
+    "highlights": [
+      "24/7 savol-javob va qo'llab-quvvatlash",
+      "Buyurtmalarni tez yig'ish",
+      "Mijozlar bazasini segmentlash"
+    ],
+    "sections": [
+      {
+        "title": "Botning asosiy vazifalari",
+        "paragraphs": [
+          "Telegram bot mijoz savollariga tez javob berish, xizmatlar haqida ma'lumot taqdim etish va buyurtma yig'ish kabi vazifalarni bajaradi.",
+          "U operatorlar yukini kamaytiradi va standart jarayonlarni avtomatlashtiradi."
+        ]
+      },
+      {
+        "title": "Eng ko'p ishlatiladigan ssenariylar",
+        "bullets": [
+          "Savdo uchun mahsulot katalogi va buyurtma qabul qilish.",
+          "Konsultatsiya yoki bron qilish jarayoni.",
+          "Yetkazib berish holatini tekshirish va bildirishnomalar.",
+          "Mijozlarni segmentlash va aksiyalar yuborish."
+        ]
+      },
+      {
+        "title": "Ishga tushirish bosqichlari",
+        "bullets": [
+          "Maqsad va kerakli ssenariylarni aniqlash.",
+          "Kontent va menyu oqimini yozish.",
+          "Integratsiyalarni sozlash va test qilish.",
+          "Analitika va optimizatsiya bilan doimiy rivojlantirish."
+        ]
+      }
+    ]
+  }
+]
