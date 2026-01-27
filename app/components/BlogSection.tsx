@@ -1,12 +1,28 @@
 "use client";
 
+import { useRef } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import SpotlightCard from "../reactbits/SpotlightCard";
 import { blogs } from "../data/blogs";
 
 const BlogSection = () => {
-  const latestBlogs = blogs.slice(0, 3);
+  const latestBlogs = blogs.slice(0, 6);
+  const sliderRef = useRef<HTMLDivElement | null>(null);
+
+  const scrollByAmount = (direction: "prev" | "next") => {
+    const slider = sliderRef.current;
+    if (!slider) return;
+
+    const card = slider.querySelector<HTMLElement>("[data-blog-card]");
+    const cardWidth = card?.offsetWidth ?? 320;
+    const scrollAmount = cardWidth + 24;
+
+    slider.scrollBy({
+      left: direction === "next" ? scrollAmount : -scrollAmount,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section id="blog" className="py-24 bg-background relative overflow-hidden">
@@ -42,16 +58,67 @@ const BlogSection = () => {
               tajribalar.
             </motion.p>
           </div>
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              aria-label="Oldingi maqolalar"
+              onClick={() => scrollByAmount("prev")}
+              className="cursor-target h-10 w-10 rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M15 6L9 12L15 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+            <button
+              type="button"
+              aria-label="Keyingi maqolalar"
+              onClick={() => scrollByAmount("next")}
+              className="cursor-target h-10 w-10 rounded-full border border-border text-muted-foreground transition-colors hover:border-[#2b68c9] hover:text-white"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="20"
+                height="20"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M9 6L15 12L9 18"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div
+          ref={sliderRef}
+          className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 -mx-4 px-4 md:mx-0 md:px-0"
+        >
           {latestBlogs.map((post, index) => (
             <motion.div
               key={post.id}
+              data-blog-card
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="w-[260px] sm:w-[320px] lg:w-[360px] shrink-0 snap-start"
             >
               <SpotlightCard
                 className="cursor-target h-full rounded-[12px] border border-border bg-card p-6 transition-all duration-300 hover:border-[#2b68c9]/50"

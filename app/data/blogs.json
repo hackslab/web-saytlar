@@ -1,5 +1,138 @@
 [
   {
+    "id": "seo_tayyor_sayt",
+    "title": "SEOga tayyor sayt: nimadan boshlash kerak?",
+    "excerpt": "Texnik tozaligi, tezligi va strukturasini to'g'ri qurish orqali qidiruvda yuqoriga chiqish yo'li.",
+    "date": "2026-01-24",
+    "dateLabel": "24 Yanvar, 2026",
+    "readTime": "7 daqiqa",
+    "category": "SEO",
+    "accent": "#2f5fb8",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "SEO Lead"
+    },
+    "highlights": [
+      "Tezlik va Core Web Vitals",
+      "Toza struktura va semantik HTML",
+      "Kontent va ichki havolalar"
+    ],
+    "sections": [
+      {
+        "title": "SEOga tayyorlik nima?",
+        "paragraphs": [
+          "SEOga tayyor sayt - bu qidiruv tizimlari uchun tushunarli, foydalanuvchi uchun qulay va tez ishlaydigan platforma.",
+          "Bu yondashuv reklama xarajatlarini kamaytirib, organik trafikni ko'paytiradi."
+        ]
+      },
+      {
+        "title": "Texnik poydevor",
+        "bullets": [
+          "Mobil moslik, toza URL va semantik HTML.",
+          "Rasmlarni optimizatsiya qilish va kechiktirib yuklash.",
+          "Robots, sitemap va sahifa tezligini nazorat qilish.",
+          "Schema va metadata orqali kontekstni kuchaytirish."
+        ]
+      },
+      {
+        "title": "Kontent strategiyasi",
+        "bullets": [
+          "Har sahifa uchun bitta aniq niyat va kalit so'z.",
+          "Ichki havolalar bilan foydalanuvchi yo'lini yaratish.",
+          "Savollarga javob beradigan foydali kontent bloklari."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "landing_konversiya",
+    "title": "Landing konversiyasini oshirish bo'yicha 5 qadam",
+    "excerpt": "CTA, isbot bloklari va UX oqimini yaxshilab, reklama trafikidan ko'proq lead olish.",
+    "date": "2026-01-19",
+    "dateLabel": "19 Yanvar, 2026",
+    "readTime": "6 daqiqa",
+    "category": "UX",
+    "accent": "#3a77c3",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "Product Designer"
+    },
+    "highlights": [
+      "Aniq CTA ierarxiyasi",
+      "Ijtimoiy isbot va kafolat",
+      "Qulay foydalanuvchi yo'li"
+    ],
+    "sections": [
+      {
+        "title": "CTA va taklif",
+        "paragraphs": [
+          "Taklif birinchi ekranidayoq ko'rinishi va foydani aniq aytishi kerak.",
+          "CTA matni harakatga undovchi bo'lib, bitta asosiy yo'nalishni ko'rsatadi."
+        ]
+      },
+      {
+        "title": "Ishonch bloklari",
+        "bullets": [
+          "Mijozlar fikrlari va real natijalar.",
+          "Hamkorlar logotiplari va statistika.",
+          "Kafolat va qo'llab-quvvatlash shartlari."
+        ]
+      },
+      {
+        "title": "Analitika va A/B test",
+        "bullets": [
+          "Konversiya nuqtalarini tracking bilan o'lchash.",
+          "Sarlavha va CTA variantlarini test qilish.",
+          "Issiq nuqtalar va scroll chuqurligini tahlil qilish."
+        ]
+      }
+    ]
+  },
+  {
+    "id": "crm_savdo_tizimi",
+    "title": "CRM bilan savdoni tizimlashtirish",
+    "excerpt": "Lidlarni bir joyga yig'ish, statuslar va avtomatik eslatmalar orqali sotuv jarayonini nazorat qilish.",
+    "date": "2026-01-15",
+    "dateLabel": "15 Yanvar, 2026",
+    "readTime": "5 daqiqa",
+    "category": "CRM",
+    "accent": "#25538e",
+    "author": {
+      "name": "Web-Saytlar jamoasi",
+      "role": "Ops Manager"
+    },
+    "highlights": [
+      "Pipeline va statuslar",
+      "Eslatmalar va SLA",
+      "Hisobotlar va prognoz"
+    ],
+    "sections": [
+      {
+        "title": "CRM nima beradi?",
+        "paragraphs": [
+          "CRM tizimi barcha lidlarni bitta joyda jamlaydi va bosqichma-bosqich nazoratni ta'minlaydi.",
+          "Bu savdo jamoasi uchun shaffoflik va o'sish nuqtalarini ko'rsatadi."
+        ]
+      },
+      {
+        "title": "Jarayonlarni sozlash",
+        "bullets": [
+          "Bosqichlar, statuslar va mas'ullarni belgilash.",
+          "Eslatmalar, vazifalar va avtomatik bildirishnomalar.",
+          "Mijoz segmentlari va ustuvorliklar."
+        ]
+      },
+      {
+        "title": "Jamoa qoidalari",
+        "bullets": [
+          "Har lid uchun javob vaqti standartlari.",
+          "Ma'lumotlarni to'liq kiritish bo'yicha cheklist.",
+          "Haftalik hisobot va ko'rib chiqish odati."
+        ]
+      }
+    ]
+  },
+  {
     "id": "web_sayt_nima",
     "title": "Web sayt nima va u biznesga nima beradi?",
     "excerpt": "Web sayt mijoz ishonchini oshiradi, xizmatlaringizni 24/7 ko'rsatadi va sotuvlarni tezlashtiradi.",
