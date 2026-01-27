@@ -10,8 +10,8 @@ export default function Home() {
       <Header />
       <AboutUs />
       <ServicesSection />
-      <PortfolioSection />
       <SuccessNumbers />
+      <PortfolioSection />
     </main>
   );
 }
