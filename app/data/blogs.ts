@@ -1,3 +1,6 @@
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export type BlogPost = {
   id: string;
   title: string;
@@ -94,7 +97,7 @@ export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
     });
 
     const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
     if (!res.ok) throw new Error("Failed to fetch blogs");
     const json = await res.json();
@@ -122,7 +125,7 @@ export async function fetchBlogBySlug(
     });
 
     const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
-      next: { revalidate: 60 },
+      cache: "no-store",
     });
 
     if (!res.ok) {
