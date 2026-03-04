@@ -18,8 +18,17 @@ export type BlogPost = {
 
 function getAdminBaseUrl(): string {
   const baseUrl =
-    process.env.ADMIN_BASE_URL ||
     process.env.NEXT_PUBLIC_ADMIN_BASE_URL ||
+    process.env.ADMIN_BASE_URL ||
+    "https://admin.innosoft-systems.uz";
+
+  return baseUrl.replace(/\/+$/, "");
+}
+
+function getFetchBaseUrl(): string {
+  const baseUrl =
+    process.env.INTERNAL_FETCH_URL ||
+    process.env.ADMIN_BASE_URL ||
     "https://admin.innosoft-systems.uz";
 
   return baseUrl.replace(/\/+$/, "");
@@ -75,6 +84,7 @@ function mapBlog(item: AdminBlog, lang: string, baseUrl: string): BlogPost {
 export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
   try {
     const adminBaseUrl = getAdminBaseUrl();
+    const fetchBaseUrl = getFetchBaseUrl();
 
     const params = new URLSearchParams({
       status: "published",
@@ -83,7 +93,7 @@ export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
       lang,
     });
 
-    const res = await fetch(`${adminBaseUrl}/api/blogs?${params.toString()}`, {
+    const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
       next: { revalidate: 60 },
     });
     if (!res.ok) throw new Error("Failed to fetch blogs");
@@ -103,6 +113,7 @@ export async function fetchBlogBySlug(
 ): Promise<BlogPost | null> {
   try {
     const adminBaseUrl = getAdminBaseUrl();
+    const fetchBaseUrl = getFetchBaseUrl();
 
     const params = new URLSearchParams({
       status: "published",
@@ -110,7 +121,7 @@ export async function fetchBlogBySlug(
       lang,
     });
 
-    const res = await fetch(`${adminBaseUrl}/api/blogs?${params.toString()}`, {
+    const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
       next: { revalidate: 60 },
     });
 
