@@ -105,6 +105,9 @@ export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
       mapBlog(item, lang, adminBaseUrl),
     );
   } catch (err) {
+    if ((err as Error).message?.includes("Dynamic server usage")) {
+      throw err;
+    }
     console.error("fetchBlogs API error:", err);
     return [];
   }
@@ -142,6 +145,9 @@ export async function fetchBlogBySlug(
     const blogs = await fetchBlogs(lang);
     return blogs.find((b) => b.id === slug) || null;
   } catch (err) {
+    if ((err as Error).message?.includes("Dynamic server usage")) {
+      throw err;
+    }
     console.error("fetchBlogBySlug API error:", err);
     return null;
   }

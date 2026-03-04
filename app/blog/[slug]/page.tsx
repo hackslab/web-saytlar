@@ -8,10 +8,7 @@ type BlogPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export async function generateStaticParams() {
-  const blogs = await fetchBlogs();
-  return blogs.map((post) => ({ slug: post.slug || post.id }));
-}
+// Removed generateStaticParams to support force-dynamic data fetching
 
 export async function generateMetadata({ params }: BlogPageProps) {
   const { slug } = await params;
