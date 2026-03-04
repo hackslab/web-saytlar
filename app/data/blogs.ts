@@ -1,13 +1,5 @@
-import axios from "axios";
-import https from "https";
-
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
-
-// Create an https agent that forces IPv4 resolution
-const httpsAgent = new https.Agent({
-  family: 4,
-});
 
 export type BlogPost = {
   id: string;
@@ -104,15 +96,12 @@ export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
       lang,
     });
 
-    const res = await axios.get(`${fetchBaseUrl}/api/blogs`, {
-      params,
-      httpsAgent,
-      headers: {
-        "Cache-Control": "no-store",
-      },
+    const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
+      cache: "no-store",
     });
-
-    return (res.data.data as AdminBlog[]).map((item) =>
+    if (!res.ok) throw new Error("Failed to fetch blogs");
+    const json = await res.json();
+    return (json.data as AdminBlog[]).map((item) =>
       mapBlog(item, lang, adminBaseUrl),
     );
   } catch (err) {
@@ -138,15 +127,16 @@ export async function fetchBlogBySlug(
       lang,
     });
 
-    const res = await axios.get(`${fetchBaseUrl}/api/blogs`, {
-      params,
-      httpsAgent,
-      headers: {
-        "Cache-Control": "no-store",
-      },
+    const res = await fetch(`${fetchBaseUrl}/api/blogs?${params.toString()}`, {
+      cache: "no-store",
     });
 
-    const post = (res.data.data as AdminBlog[])[0];
+    if (!res.ok) {
+      throw new Error("Failed to fetch blog by slug");
+    }
+
+    const json = await res.json();
+    const post = (json.data as AdminBlog[])[0];
 
     if (post) {
       return mapBlog(post, lang, adminBaseUrl);
