@@ -4,9 +4,9 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import SpotlightCard from "../reactbits/SpotlightCard";
-import { blogs } from "../data/blogs";
+import { BlogPost } from "../data/blogs";
 
-const BlogSection = () => {
+const BlogSection = ({ blogs }: { blogs: BlogPost[] }) => {
   const latestBlogs = blogs.slice(0, 6);
   const sliderRef = useRef<HTMLDivElement | null>(null);
 
@@ -26,7 +26,6 @@ const BlogSection = () => {
 
   return (
     <section id="blog" className="py-24 bg-background relative overflow-hidden">
-
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div className="max-w-xl">
@@ -121,20 +120,30 @@ const BlogSection = () => {
               className="w-[260px] sm:w-[320px] lg:w-[360px] shrink-0 snap-start"
             >
               <SpotlightCard
-                className="cursor-target flex h-full min-h-[360px] flex-col rounded-[12px] border border-border bg-card p-6 transition-all duration-300 hover:border-[#2b68c9]/50"
+                className="cursor-target group flex h-full min-h-[360px] flex-col rounded-[12px] border border-border bg-card p-6 transition-all duration-300 hover:border-[#2b68c9]/50"
                 spotlightColor="rgba(43, 104, 201, 0.15)"
               >
-                <div className="relative mb-5 h-36 w-full overflow-hidden rounded-[10px] border border-white/10">
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(135deg, ${post.accent}55, rgba(0, 0, 0, 0.9))`,
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(255,255,255,0.16),_transparent_60%)]" />
+                <div className="relative mb-5 h-44 w-full overflow-hidden rounded-[10px] border border-white/10 group-scope">
+                  {post.featuredImage ? (
+                    <img
+                      src={post.featuredImage}
+                      alt={post.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div
+                      className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
+                      style={{
+                        background: `linear-gradient(135deg, ${post.accent}55, rgba(0, 0, 0, 0.9))`,
+                      }}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                   <div className="relative z-10 h-full p-4 flex flex-col justify-between">
-                    <div className="flex items-center justify-between text-xs font-mono text-white/70">
-                      <span>{post.category.toUpperCase()}</span>
+                    <div className="flex items-center justify-between text-xs font-mono text-white/90">
+                      <span className="bg-black/50 px-2.5 py-1 rounded-md backdrop-blur-md border border-white/10">
+                        {post.category.toUpperCase()}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -153,7 +162,7 @@ const BlogSection = () => {
                     <span>{post.author.role}</span>
                   </div>
                   <Link
-                    href={`/blog/${post.id}`}
+                    href={`/blog/${post.slug || post.id}`}
                     className="cursor-target text-sm font-medium text-[#2b68c9] hover:text-white transition-colors"
                   >
                     Batafsil

@@ -1,18 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SpotlightCard from "../../reactbits/SpotlightCard";
-import { blogs } from "../../data/blogs";
+import { fetchBlogs, fetchBlogBySlug } from "../../data/blogs";
+import "./blog.css";
 
 type BlogPageProps = {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
-  return blogs.map((post) => ({ slug: post.id }));
+export async function generateStaticParams() {
+  const blogs = await fetchBlogs();
+  return blogs.map((post) => ({ slug: post.slug || post.id }));
 }
 
-export function generateMetadata({ params }: BlogPageProps) {
-  const post = blogs.find((blog) => blog.id === params.slug);
+export async function generateMetadata({ params }: BlogPageProps) {
+  const { slug } = await params;
+  const post = await fetchBlogBySlug(slug);
 
   if (!post) {
     return {
@@ -26,12 +29,16 @@ export function generateMetadata({ params }: BlogPageProps) {
   };
 }
 
-export default function BlogPostPage({ params }: BlogPageProps) {
-  const post = blogs.find((blog) => blog.id === params.slug);
+export default async function BlogPostPage({ params }: BlogPageProps) {
+  const { slug } = await params;
+  const post = await fetchBlogBySlug(slug);
+  const allBlogs = await fetchBlogs();
 
   if (!post) {
     notFound();
   }
+
+  const moreBlogs = allBlogs.filter((b) => b.id !== post.id).slice(0, 3);
 
   return (
     <main className="min-h-screen pt-32 pb-24 bg-background">
@@ -61,48 +68,23 @@ export default function BlogPostPage({ params }: BlogPageProps) {
         <div className="mt-8 h-[1px] w-full bg-gradient-to-r from-transparent via-[#2b68c9] to-transparent" />
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-10">
-          <article className="space-y-10">
-            {post.sections.map((section) => (
-              <section key={section.title} className="space-y-4">
-                <h2 className="text-2xl font-bold">{section.title}</h2>
-                {section.paragraphs?.map((paragraph) => (
-                  <p
-                    key={paragraph}
-                    className="text-muted-foreground text-base leading-relaxed"
-                  >
-                    {paragraph}
-                  </p>
-                ))}
-                {section.bullets && section.bullets.length > 0 ? (
-                  <ul className="space-y-2 text-muted-foreground">
-                    {section.bullets.map((bullet) => (
-                      <li key={bullet} className="flex items-start gap-3">
-                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#2b68c9]" />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                ) : null}
-              </section>
-            ))}
+          <article className="space-y-6 max-w-none w-full">
+            {post.featuredImage && (
+              <div className="flex justify-center w-full mb-8">
+                <img
+                  src={post.featuredImage}
+                  alt={post.title}
+                  className="w-full max-w-[500px] h-auto rounded-[12px] object-cover"
+                />
+              </div>
+            )}
+            <div
+              className="blog-content text-base leading-relaxed space-y-4"
+              dangerouslySetInnerHTML={{ __html: post.content }}
+            />
           </article>
 
           <aside className="space-y-6">
-            <SpotlightCard
-              className="rounded-[12px] border border-border bg-card p-6"
-              spotlightColor="rgba(43, 104, 201, 0.2)"
-            >
-              <h3 className="text-lg font-bold mb-4">Qisqa xulosa</h3>
-              <ul className="space-y-3 text-sm text-muted-foreground">
-                {post.highlights.map((highlight) => (
-                  <li key={highlight} className="flex items-start gap-3">
-                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-[#2b68c9]" />
-                    <span>{highlight}</span>
-                  </li>
-                ))}
-              </ul>
-            </SpotlightCard>
-
             <div className="rounded-[12px] border border-border bg-card p-6">
               <h3 className="text-lg font-bold mb-2">Keyingi qadam</h3>
               <p className="text-muted-foreground text-sm mb-4">
@@ -116,6 +98,40 @@ export default function BlogPostPage({ params }: BlogPageProps) {
                 Bepul maslahat olish
               </Link>
             </div>
+
+            {moreBlogs.length > 0 && (
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold">Boshqa maqolalar</h3>
+                <div className="space-y-4">
+                  {moreBlogs.map((b) => (
+                    <Link
+                      key={b.id}
+                      href={`/blog/${b.slug || b.id}`}
+                      className="cursor-target group flex items-start gap-4 rounded-[12px] border border-border bg-card p-4 transition-all duration-300 hover:border-[#2b68c9]/50"
+                    >
+                      {b.featuredImage && (
+                        <img
+                          src={b.featuredImage}
+                          alt={b.title}
+                          className="w-20 h-20 rounded-[8px] object-cover shrink-0"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <div className="text-xs font-mono text-[#2b68c9] mb-1">
+                          {b.category.toUpperCase()}
+                        </div>
+                        <h4 className="font-bold text-sm mb-1 group-hover:text-[#2b68c9] transition-colors line-clamp-2 leading-tight">
+                          {b.title}
+                        </h4>
+                        <p className="text-xs text-muted-foreground line-clamp-1">
+                          {b.excerpt}
+                        </p>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
           </aside>
         </div>
       </div>
