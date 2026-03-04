@@ -18,9 +18,8 @@ export type BlogPost = {
 
 function getAdminBaseUrl(): string {
   const baseUrl =
-    process.env.ADMIN_BASE_URL ??
-    process.env.NEXT_PUBLIC_ADMIN_BASE_URL ??
-    process.env.NEXT_PUBLIC_BASE_URL ??
+    process.env.ADMIN_BASE_URL ||
+    process.env.NEXT_PUBLIC_ADMIN_BASE_URL ||
     "https://admin.innosoft-systems.uz";
 
   return baseUrl.replace(/\/+$/, "");
@@ -84,17 +83,16 @@ export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
       lang,
     });
 
-    const res = await fetch(
-      `${adminBaseUrl}/api/blogs?${params.toString()}`,
-      { next: { revalidate: 60 } },
-    );
+    const res = await fetch(`${adminBaseUrl}/api/blogs?${params.toString()}`, {
+      next: { revalidate: 60 },
+    });
     if (!res.ok) throw new Error("Failed to fetch blogs");
     const json = await res.json();
     return (json.data as AdminBlog[]).map((item) =>
       mapBlog(item, lang, adminBaseUrl),
     );
   } catch (err) {
-    console.error(err);
+    console.error("fetchBlogs API error:", err);
     return [];
   }
 }
@@ -130,7 +128,7 @@ export async function fetchBlogBySlug(
     const blogs = await fetchBlogs(lang);
     return blogs.find((b) => b.id === slug) || null;
   } catch (err) {
-    console.error(err);
+    console.error("fetchBlogBySlug API error:", err);
     return null;
   }
 }
