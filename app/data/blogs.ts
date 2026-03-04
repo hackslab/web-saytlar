@@ -16,9 +16,15 @@ export type BlogPost = {
   };
 };
 
-const adminBaseUrl = (
-  process.env.ADMIN_BASE_URL ?? process.env.NEXT_PUBLIC_ADMIN_BASE_URL
-)?.replace(/\/+$/, "");
+function getAdminBaseUrl(): string {
+  const baseUrl =
+    process.env.ADMIN_BASE_URL ??
+    process.env.NEXT_PUBLIC_ADMIN_BASE_URL ??
+    process.env.NEXT_PUBLIC_BASE_URL ??
+    "https://admin.innosoft-systems.uz";
+
+  return baseUrl.replace(/\/+$/, "");
+}
 
 type AdminBlog = {
   _id: string;
@@ -69,11 +75,7 @@ function mapBlog(item: AdminBlog, lang: string, baseUrl: string): BlogPost {
 
 export async function fetchBlogs(lang: string = "uz"): Promise<BlogPost[]> {
   try {
-    if (!adminBaseUrl) {
-      throw new Error(
-        "Missing ADMIN_BASE_URL (or NEXT_PUBLIC_ADMIN_BASE_URL) in environment variables",
-      );
-    }
+    const adminBaseUrl = getAdminBaseUrl();
 
     const params = new URLSearchParams({
       status: "published",
@@ -102,11 +104,7 @@ export async function fetchBlogBySlug(
   lang: string = "uz",
 ): Promise<BlogPost | null> {
   try {
-    if (!adminBaseUrl) {
-      throw new Error(
-        "Missing ADMIN_BASE_URL (or NEXT_PUBLIC_ADMIN_BASE_URL) in environment variables",
-      );
-    }
+    const adminBaseUrl = getAdminBaseUrl();
 
     const params = new URLSearchParams({
       status: "published",
