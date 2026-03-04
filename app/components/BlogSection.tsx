@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import SpotlightCard from "../reactbits/SpotlightCard";
-import { BlogPost } from "../data/blogs";
+import type { BlogPost } from "../data/blogs";
 
 const BlogSection = ({ blogs }: { blogs: BlogPost[] }) => {
   const latestBlogs = blogs.slice(0, 6);
@@ -152,7 +152,7 @@ const BlogSection = ({ blogs }: { blogs: BlogPost[] }) => {
                   {post.title}
                 </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3">
-                  {post.excerpt}
+                  {post.description || post.excerpt}
                 </p>
 
                 <div className="mt-auto flex items-center justify-between pt-6">

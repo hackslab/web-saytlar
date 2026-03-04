@@ -2,6 +2,18 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+Create a local env file before running the app:
+
+```bash
+cp .env.example .env.local
+```
+
+Set the admin panel base URL in `.env.local`:
+
+```bash
+ADMIN_BASE_URL=https://admin.innosoft-systems.uz
+```
+
 First, run the development server:
 
 ```bash
@@ -14,7 +26,7 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3002](http://localhost:3002) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
