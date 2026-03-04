@@ -4,11 +4,7 @@ import SuccessNumbers from "./components/SuccessNumbers";
 import ServicesSection from "./components/ServicesSection";
 import PortfolioSection from "./components/PortfolioSection";
 import BlogSection from "./components/BlogSection";
-import { fetchBlogs } from "./data/blogs";
-
-export default async function Home() {
-  const blogs = await fetchBlogs();
-
+export default function Home() {
   return (
     <main>
       <Header />
@@ -16,7 +12,7 @@ export default async function Home() {
       <ServicesSection />
       <SuccessNumbers />
       <PortfolioSection />
-      <BlogSection blogs={blogs} />
+      <BlogSection />
     </main>
   );
 }

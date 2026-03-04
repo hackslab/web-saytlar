@@ -1,12 +1,21 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import SpotlightCard from "../reactbits/SpotlightCard";
 import type { BlogPost } from "../data/blogs";
+import { getBlogsAction } from "../actions/blogActions";
 
-const BlogSection = ({ blogs }: { blogs: BlogPost[] }) => {
+const BlogSection = () => {
+  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+
+  useEffect(() => {
+    getBlogsAction()
+      .then((data) => setBlogs(data))
+      .catch(console.error);
+  }, []);
+
   const latestBlogs = blogs.slice(0, 6);
   const sliderRef = useRef<HTMLDivElement | null>(null);
 

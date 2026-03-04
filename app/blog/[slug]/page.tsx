@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import SpotlightCard from "../../reactbits/SpotlightCard";
-import { fetchBlogs, fetchBlogBySlug } from "../../data/blogs";
+import { fetchBlogBySlug } from "../../data/blogs";
+import MoreBlogs from "../../components/MoreBlogs";
 import "./blog.css";
 
 type BlogPageProps = {
@@ -29,13 +30,10 @@ export async function generateMetadata({ params }: BlogPageProps) {
 export default async function BlogPostPage({ params }: BlogPageProps) {
   const { slug } = await params;
   const post = await fetchBlogBySlug(slug);
-  const allBlogs = await fetchBlogs();
 
   if (!post) {
     notFound();
   }
-
-  const moreBlogs = allBlogs.filter((b) => b.id !== post.id).slice(0, 3);
 
   return (
     <main className="min-h-screen pt-32 pb-24 bg-background">
@@ -96,39 +94,7 @@ export default async function BlogPostPage({ params }: BlogPageProps) {
               </Link>
             </div>
 
-            {moreBlogs.length > 0 && (
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold">Boshqa maqolalar</h3>
-                <div className="space-y-4">
-                  {moreBlogs.map((b) => (
-                    <Link
-                      key={b.id}
-                      href={`/blog/${b.slug || b.id}`}
-                      className="cursor-target group flex items-start gap-4 rounded-[12px] border border-border bg-card p-4 transition-all duration-300 hover:border-[#2b68c9]/50"
-                    >
-                      {b.featuredImage && (
-                        <img
-                          src={b.featuredImage}
-                          alt={b.title}
-                          className="w-20 h-20 rounded-[8px] object-cover shrink-0"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <div className="text-xs font-mono text-[#2b68c9] mb-1">
-                          {b.category.toUpperCase()}
-                        </div>
-                        <h4 className="font-bold text-sm mb-1 group-hover:text-[#2b68c9] transition-colors line-clamp-2 leading-tight">
-                          {b.title}
-                        </h4>
-                        <p className="text-xs text-muted-foreground line-clamp-1">
-                          {b.excerpt}
-                        </p>
-                      </div>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
+            <MoreBlogs currentPostId={post.id} />
           </aside>
         </div>
       </div>
